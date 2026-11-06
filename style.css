@@ -1,0 +1,162 @@
+/* --- 核心变量与重置 --- */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.6);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 动态背景画布 --- */
+#canvas-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/* --- 全局布局 --- */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- 导航栏 --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 0;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* --- 主视觉区 --- */
+.hero {
+    padding: 6rem 0 5rem;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+.gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 550px;
+    margin: 0 auto 3rem;
+}
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--gradient);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+}
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -10px var(--accent-glow);
+}
+
+/* --- Bento Grid 网格布局 --- */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+}
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+}
+.card.large { grid-column: span 2; }
+.card.tall { grid-row: span 2; }
+
+.card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+.card p { color: var(--text-muted); font-size: 0.9rem; }
+.card ul { list-style: none; margin-top: 1rem; }
+.card ul li { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0.5rem; position: relative; padding-left: 1.2rem;}
+.card ul li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+
+.card-icon { font-size: 1.8rem; margin-bottom: 1rem; display: inline-block; }
+.tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-right: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+/* --- 页脚 --- */
+footer {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--card-border);
+}
+
+/* --- 移动端适配 --- */
+@media (max-width: 900px) {
+    .hero h1 { font-size: 3rem; }
+    .bento-grid { grid-template-columns: 1fr; }
+    .card.large, .card.tall { grid-column: span 1; grid-row: span 1; }
+    .nav-links { display: none; }
+}
