@@ -59,3 +59,74 @@ main{max-width:1600px;margin:0 auto;padding:0 3.1%}
 @media(max-width:1120px){.site-header{gap:10px}.brand{font-size:16px}.nav-link{padding:8px 10px;font-size:12px}.quick-links{gap:12px}.quick-card{padding:14px;gap:10px}.quick-icon{width:49px;height:49px}.dashboard{grid-template-columns:1fr 1.1fr}.tags-panel{grid-column:1/-1}.tag-cloud{gap:9px}}
 @media(max-width:760px){.site-header{height:68px;padding:0 17px}.brand{font-size:16px}.brand-crown{font-size:29px}.mobile-menu{display:block;margin-left:auto;border:0;background:transparent;color:var(--ink);font-size:22px}.main-nav{position:absolute;top:60px;left:13px;right:13px;display:none;align-items:stretch;flex-direction:column;gap:3px;padding:10px;border:1px solid var(--line);border-radius:15px;background:var(--surface-solid);box-shadow:var(--shadow)}.main-nav.open{display:flex}.nav-link{padding:10px 12px}.header-actions{gap:5px}.icon-button{width:33px;height:33px;font-size:20px}.github-button{display:none}.hero{min-height:330px;background-position:58% center}.hero:after{background:linear-gradient(90deg,#e8f1ffe8,#e8f1ff99 70%,#e8f1ff30)}.hero-content{padding:40px 23px 75px}.hero-kicker{font-size:13px}.hero h1{max-width:390px;font-size:35px}.hero-subtitle{font-size:15px}.hero-motto{right:7%;top:auto;bottom:31px;font-size:19px}.motto-line{width:95px;margin-top:7px}.hero-caption{display:none}main{padding:0 14px}.quick-links{grid-template-columns:1fr 1fr;gap:9px;margin:13px 0}.quick-card{min-height:91px;padding:11px;gap:9px}.quick-icon{width:39px;height:39px;border-radius:12px;font-size:18px}.quick-copy strong{font-size:12px}.quick-copy small{font-size:9px}.quick-arrow{width:29px;height:29px;font-size:17px}.dashboard,.project-grid,.bottom-grid{grid-template-columns:1fr;gap:12px}.tags-panel{grid-column:auto}.updates-panel,.tags-panel{min-height:0}.featured-card{min-height:220px;grid-row:2}.update-item{font-size:11px}.update-item time,.update-type{font-size:9px}.more-section{margin-top:37px}.section-title h2{font-size:20px}.section-title>span{font-size:9px}.project-card{padding:18px}.bottom-grid{margin-top:12px}.site-footer{flex-wrap:wrap;gap:9px;margin-top:25px;padding:20px 17px}.site-footer p{font-size:9px}.footer-brand{font-size:13px}.footer-divider{height:17px}.footer-social{margin-left:auto}.footer-social a{width:30px;height:30px}.site-footer>small{width:100%;font-size:8px}}
 @media(max-width:390px){.quick-card{gap:7px;padding:9px}.quick-icon{width:34px;height:34px}.quick-copy strong{font-size:11px}.quick-copy small{font-size:8px}.quick-arrow{width:25px;height:25px}}
+
+
+/* ===== Alpine Blue redesign: photographic hero + compact editorial layout ===== */
+.site-header{
+  position:absolute;top:0;left:0;right:0;z-index:20;width:100%;max-width:1600px;
+  height:82px;margin:0 auto;padding:0 3.1%;
+}
+.brand{color:#10264b;text-shadow:0 1px 10px #fff8}
+.main-nav{gap:7px}
+.nav-link{color:#10264b;text-shadow:0 1px 8px #fff8}
+.nav-link:hover,.nav-link.active{background:#ffffffa8;color:#1768dc;backdrop-filter:blur(9px)}
+.icon-button{background:#ffffffb8;color:#10264b;box-shadow:0 3px 14px #18385b12;backdrop-filter:blur(8px)}
+.github-button{background:#ffffffed;color:#14294b;box-shadow:0 3px 14px #18385b18}
+main{max-width:none;margin:0;padding:0}
+.hero{
+  min-height:402px;margin:0;border-radius:0;
+  background-color:#b9cde5;
+  background-image:url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2600&q=90");
+  background-position:center 48%;background-size:cover;
+}
+.hero:after{
+  background:linear-gradient(90deg,rgba(235,243,255,.91) 0%,rgba(235,243,255,.76) 25%,rgba(235,243,255,.28) 53%,rgba(13,37,65,.05) 100%),
+             linear-gradient(0deg,rgba(15,43,72,.16),transparent 35%);
+}
+.hero-content{width:min(1500px,100%);margin:0 auto;padding:105px 4.5% 40px}
+.hero-kicker{font-size:19px;color:#60799f;letter-spacing:.13em}
+.hero h1{font-size:clamp(36px,4vw,48px);color:#10264b}
+.hero-subtitle{font-size:19px;color:#17365f}
+.hero-cta{border-color:#8eb5f4;background:#ffffff55;backdrop-filter:blur(6px);transition:transform .2s,background .2s}
+.hero-cta:hover{transform:translateY(-2px);background:#ffffffd9}
+.hero-motto{top:54%;right:10%;font-size:30px;color:white;text-shadow:0 2px 13px #102d50d9}
+.hero-caption{color:#ffffffd9;text-shadow:0 1px 7px #163451}
+.quick-links{
+  max-width:1600px;margin:23px auto 27px;padding:0 3.1%;
+  grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;
+}
+.quick-card{min-height:116px}
+.dashboard{
+  max-width:1600px;margin:0 auto;padding:0 3.1%;
+  grid-template-columns:1fr 1.27fr .88fr;gap:22px;
+}
+.featured-card{
+  background-image:url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1500&q=88");
+  background-position:center;background-size:cover;
+}
+.featured-card:after{background:none;filter:none;opacity:1}
+.more-section,.bottom-grid{max-width:1600px;margin-left:auto;margin-right:auto;padding-left:3.1%;padding-right:3.1%}
+.more-section{margin-top:48px}
+.bottom-grid{margin-top:18px}
+.site-footer{max-width:1600px;padding-left:3.1%;padding-right:3.1%}
+@media(max-width:1120px){
+  .site-header{padding-left:2.5%;padding-right:2.5%}
+  .quick-links{padding-left:2.5%;padding-right:2.5%;gap:12px}
+  .dashboard{padding-left:2.5%;padding-right:2.5%}
+}
+@media(max-width:760px){
+  .site-header{height:68px;padding:0 17px}
+  .hero{min-height:365px;background-position:58% center}
+  .hero:after{background:linear-gradient(90deg,rgba(235,243,255,.92),rgba(235,243,255,.75) 55%,rgba(235,243,255,.22)),linear-gradient(0deg,#16395a22,transparent 35%)}
+  .hero-content{padding:104px 23px 65px}
+  .hero-kicker{font-size:13px}
+  .hero h1{max-width:390px;font-size:35px}
+  .hero-subtitle{font-size:15px}
+  .hero-motto{right:7%;top:auto;bottom:29px;font-size:19px}
+  .motto-line{width:95px;margin-top:7px}
+  .quick-links{grid-template-columns:1fr 1fr;gap:9px;margin:13px auto;padding:0 14px}
+  .dashboard{grid-template-columns:1fr;gap:12px;padding:0 14px}
+  .more-section,.bottom-grid{padding-left:14px;padding-right:14px}
+  .featured-card{min-height:220px;grid-row:2}
+  .site-footer{padding-left:17px;padding-right:17px}
+}
