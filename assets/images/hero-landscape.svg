@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 650" role="img" aria-label="雪山、森林与湖泊的清晨风景">
+<defs>
+ <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#b9d2f7"/><stop offset=".48" stop-color="#f5d9d0"/><stop offset="1" stop-color="#d8e7f6"/></linearGradient>
+ <linearGradient id="lake" x2="0" y2="1"><stop stop-color="#688eaf"/><stop offset=".3" stop-color="#91b5cf"/><stop offset="1" stop-color="#d4e2ed"/></linearGradient>
+ <linearGradient id="mountain" x2=".1" y2="1"><stop stop-color="#edf4ff"/><stop offset=".18" stop-color="#9eb7d7"/><stop offset="1" stop-color="#45688f"/></linearGradient>
+ <linearGradient id="forest" x2="0" y2="1"><stop stop-color="#35546b"/><stop offset="1" stop-color="#1b3549"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="17"/></filter>
+</defs>
+<rect width="1800" height="650" fill="url(#sky)"/>
+<circle cx="1390" cy="135" r="78" fill="#fff3dc" opacity=".62" filter="url(#blur)"/>
+<path d="M0 340 180 270 310 296 475 210 610 270 790 110 920 208 1090 85 1220 230 1370 145 1510 265 1650 180 1800 245V430H0Z" fill="#8da9cb" opacity=".4"/>
+<path d="m0 420 230-100 150 45 190-135 155 95 175-220 140 125 170-185 170 155 120-75 130 135 160-100 180 125v170H0Z" fill="url(#mountain)"/>
+<path d="m620 325 105-110 75-110 80 75 65-25 110-125 74 83 75-30 95 115-80-35-65 28-73-65-70 66-53-31-69 93-71-24-57 80Z" fill="#f3f7fc" opacity=".95"/>
+<path d="m1010 155 80-105 74 83 75-30 95 115-80-35-65 28-73-65-70 66Z" fill="#fff" opacity=".72"/>
+<path d="M0 390 Q300 365 570 385 T1120 370 T1800 380V650H0Z" fill="url(#lake)"/>
+<path d="M0 400 Q350 382 700 401 T1400 394 T1800 400" fill="none" stroke="#fff" stroke-width="5" opacity=".55"/>
+<path d="M0 452 Q260 430 520 453 T1050 449 T1800 450" fill="none" stroke="#e8f4ff" stroke-width="3" opacity=".38"/>
+<path d="M0 520 Q330 495 660 520 T1320 512 T1800 520" fill="none" stroke="#eaf4fc" stroke-width="4" opacity=".25"/>
+<path d="M0 360 Q220 345 440 360T880 355T1320 357T1800 350" fill="none" stroke="#f9f6f1" stroke-width="24" opacity=".35" filter="url(#blur)"/>
+<g fill="url(#forest)">
+ <path d="M1260 390 1300 280 1340 390Z M1305 397 1350 250 1395 397Z M1355 395 1400 285 1445 395Z M1410 400 1460 225 1510 400Z M1470 400 1515 270 1560 400Z M1530 405 1580 205 1630 405Z M1595 405 1645 250 1695 405Z M1660 405 1710 170 1760 405Z M1720 405 1760 245 1800 405Z"/>
+</g>
+<g fill="#244357" opacity=".85">
+ <path d="M1300 390 1307 335 1314 390 M1350 395 1357 320 1364 395 M1400 396 1408 335 1416 396 M1460 400 1468 310 1476 400 M1515 400 1523 335 1531 400 M1580 405 1588 300 1596 405 M1645 405 1653 335 1661 405 M1710 405 1718 300 1726 405"/>
+</g>
+<path d="M0 420 Q270 407 520 423T1000 417T1450 425T1800 415" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
+</svg>
