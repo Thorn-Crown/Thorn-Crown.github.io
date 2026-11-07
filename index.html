@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thron-crown | 数字花园</title>
+    <style>
+        /* --- 核心变量与重置 --- */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.5);
+            --gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- 动态背景 --- */
+        #canvas-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* --- 布局容器 --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- 导航栏 --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero 区域 --- */
+        .hero {
+            padding: 8rem 0 6rem;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+        .hero h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px -10px var(--accent-glow);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -10px var(--accent-glow);
+        }
+
+        /* --- Bento Grid 布局 --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 6rem;
+        }
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5);
+        }
+        .card.large { grid-column: span 2; }
+        .card.tall { grid-row: span 2; }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-right: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        /* --- 页脚 --- */
+        footer {
+            text-align: center;
+            padding: 4rem 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--card-border);
+        }
+
+        /* --- 响应式 --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .card.large, .card.tall { grid-column: span 1; grid-row: span 1; }
+            .nav-links { display: none; } /* 移动端简化隐藏菜单 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 动态粒子背景 -->
+    <canvas id="canvas-bg"></canvas>
+
+    <div class="container">
+        <!-- 导航 -->
+        <nav>
+            <div class="logo">Thron-crown.</div>
+            <div class="nav-links">
+                <a href="#">首页</a>
+                <a href="#">文章</a>
+                <a href="#">项目</a>
+                <a href="#">关于我</a>
+            </div>
+        </nav>
+
+        <!-- 主视觉区 -->
+        <section class="hero">
+            <h1>探索代码与设计的<br><span>无限边界</span></h1>
+            <p>你好，我是 Thron-crown。这里是我的数字花园，记录我对技术、设计与未来的思考。</p>
+            <a href="#" class="btn">阅读最新文章</a>
+        </section>
+
+        <!-- 内容网格 -->
+        <section class="bento-grid">
+            <!-- 大卡片：置顶文章 -->
+            <div class="card large">
+                <div>
+                    <span class="card-icon">🚀</span>
+                    <h3>GitHub Pages 搭建指南</h3>
+                    <p>从零开始，手把手教你如何用极低的成本搭建一个属于自己的高端个人博客，无需服务器，永久免费。</p>
+                </div>
+                <div>
+                    <span class="tag">教程</span>
+                    <span class="tag">前端</span>
+                </div>
+            </div>
+
+            <!-- 普通卡片：关于 -->
+            <div class="card">
+                <span class="card-icon">👨‍💻</span>
+                <h3>关于我</h3>
+                <p>一名热爱技术与设计的开发者，专注于 Web 前端与 AI 应用探索。</p>
+            </div>
+
+            <!-- 高卡片：项目展示 -->
+            <div class="card tall">
+                <div>
+                    <span class="card-icon">💡</span>
+                    <h3>精选项目</h3>
+                    <p>这里展示我近期完成的代码项目与设计实验。每一个像素都经过精心打磨。</p>
+                    <ul style="margin-top: 20px; padding-left: 20px; color: var(--text-muted);">
+                        <li>AI 智能助手</li>
+                        <li>个人效率工具</li>
+                        <li>数据可视化大屏</li>
+                    </ul>
+                </div>
+                <span class="tag">查看 Github →</span>
+            </div>
+
+            <!-- 普通卡片：联系 -->
+            <div class="card">
+                <span class="card-icon">📬</span>
+                <h3>保持联系</h3>
+                <p>欢迎通过邮件与我交流，探讨技术或合作机会。</p>
+            </div>
+
+            <!-- 普通卡片：统计 -->
+            <div class="card">
+                <span class="card-icon">📊</span>
+                <h3>本站统计</h3>
+                <p style="font-size: 2rem; font-weight: bold; color: var(--text-main); margin-top: 10px;">1,024</p>
+                <p>累计访问次数</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Thron-crown. Designed with Glassmorphism.</p>
+        </footer>
+    </div>
+
+    <!-- 粒子特效脚本 -->
+    <script>
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(56, 189, 248, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                // 连线逻辑
+                for (let j = index + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 150) {
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${0.1 - dist/1500})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
