@@ -26,7 +26,7 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-
+    
         /* --- 动态背景 --- */
         #canvas-bg {
             position: fixed;
@@ -35,14 +35,14 @@
             z-index: -1;
             opacity: 0.6;
         }
-
+    
         /* --- 布局容器 --- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-
+    
         /* --- 导航栏 --- */
         nav {
             display: flex;
@@ -70,7 +70,7 @@
             font-size: 0.95rem;
         }
         .nav-links a:hover { color: var(--accent); }
-
+    
         /* --- Hero 区域 --- */
         .hero {
             padding: 8rem 0 6rem;
@@ -109,7 +109,7 @@
             transform: translateY(-3px);
             box-shadow: 0 20px 40px -10px var(--accent-glow);
         }
-
+    
         /* --- Bento Grid 布局 --- */
         .bento-grid {
             display: grid;
@@ -157,7 +157,7 @@
             margin-right: 0.5rem;
             margin-top: 1rem;
         }
-
+    
         /* --- 页脚 --- */
         footer {
             text-align: center;
@@ -166,7 +166,7 @@
             font-size: 0.9rem;
             border-top: 1px solid var(--card-border);
         }
-
+    
         /* --- 响应式 --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -180,11 +180,11 @@
 
     <!-- 动态粒子背景 -->
     <canvas id="canvas-bg"></canvas>
-
+    
     <div class="container">
         <!-- 导航 -->
         <nav>
-            <div class="logo">Thron-crown.</div>
+            <div class="logo">Thorn-crown.</div>
             <div class="nav-links">
                 <a href="#">首页</a>
                 <a href="#">文章</a>
@@ -192,14 +192,14 @@
                 <a href="#">关于我</a>
             </div>
         </nav>
-
+    
         <!-- 主视觉区 -->
         <section class="hero">
             <h1>探索代码与设计的<br><span>无限边界</span></h1>
-            <p>你好，我是 Thron-crown。这里是我的数字花园，记录我对技术、设计与未来的思考。</p>
+            <p>你好，我是 Thorn-crown。这里是我的数字花园，记录我对技术、设计与未来的思考。</p>
             <a href="#" class="btn">阅读最新文章</a>
         </section>
-
+    
         <!-- 内容网格 -->
         <section class="bento-grid">
             <!-- 大卡片：置顶文章 -->
@@ -214,14 +214,14 @@
                     <span class="tag">前端</span>
                 </div>
             </div>
-
+    
             <!-- 普通卡片：关于 -->
             <div class="card">
                 <span class="card-icon">👨‍💻</span>
                 <h3>关于我</h3>
                 <p>一名热爱技术与设计的开发者，专注于 Web 前端与 AI 应用探索。</p>
             </div>
-
+    
             <!-- 高卡片：项目展示 -->
             <div class="card tall">
                 <div>
@@ -236,14 +236,14 @@
                 </div>
                 <span class="tag">查看 Github →</span>
             </div>
-
+    
             <!-- 普通卡片：联系 -->
             <div class="card">
                 <span class="card-icon">📬</span>
                 <h3>保持联系</h3>
                 <p>欢迎通过邮件与我交流，探讨技术或合作机会。</p>
             </div>
-
+    
             <!-- 普通卡片：统计 -->
             <div class="card">
                 <span class="card-icon">📊</span>
@@ -252,26 +252,26 @@
                 <p>累计访问次数</p>
             </div>
         </section>
-
+    
         <footer>
-            <p>© 2026 Thron-crown. Designed with Glassmorphism.</p>
+            <p>© 2026 Thorn-crown. Designed with Glassmorphism.</p>
         </footer>
     </div>
-
+    
     <!-- 粒子特效脚本 -->
     <script>
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-
+    
         function resize() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
         }
         window.addEventListener('resize', resize);
         resize();
-
+    
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
@@ -293,9 +293,9 @@
                 ctx.fill();
             }
         }
-
+    
         for (let i = 0; i < 50; i++) particles.push(new Particle());
-
+    
         function animate() {
             ctx.clearRect(0, 0, width, height);
             particles.forEach((p, index) => {
