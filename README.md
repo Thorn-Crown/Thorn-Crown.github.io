@@ -1,4 +1,4 @@
-# Thron-Crown.github.io
+# Thorn-Crown.github.io
 My GitHub Pages
 [🌐 访问我的博客](https://thorn-crown.github.io/)
 
